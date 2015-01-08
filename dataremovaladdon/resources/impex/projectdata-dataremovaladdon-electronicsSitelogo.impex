@@ -1,0 +1,15 @@
+############### Electronics ###############
+$electronicsCatalog=electronicsContentCatalog
+$electronicsContentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$electronicsCatalog]),CatalogVersion.version[default=Staged])[default=$electronicsCatalog:Staged]
+$defaultLanguage=en
+
+$electronicsPicture=media(code, $electronicsContentCV)
+
+
+# Site Logo Right
+REMOVE Media;$electronicsContentCV[unique=true];code[unique=true]
+;;ElectronicsAccentureLogo
+
+# Site Logo Right Component
+INSERT_UPDATE SimpleBannerComponent;$electronicsContentCV[unique=true];uid[unique=true];name;&componentRef;$electronicsPicture[lang=$defaultLanguage];urlLink
+;;SiteLogoComponent;Site Logo Component;SiteLogoComponent;/images/theme/logo-hybris.png:electronicsContentCatalog:Staged;"/"

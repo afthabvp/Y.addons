@@ -1,0 +1,12 @@
+########### Apparel-DE #######################
+$apparelDEContentCatalog=apparel-deContentCatalog
+$apparelDEContentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$apparelDEContentCatalog]),CatalogVersion.version[default=Staged])[default=$apparelDEContentCatalog:Staged]
+$apparelDEPicture=media(code, $apparelDEContentCV)
+
+$defaultLanguage=de
+
+REMOVE Media;$apparelDEContentCV[unique=true];code[unique=true]
+;;ApparelDEAccentureLogo;
+
+INSERT_UPDATE SimpleBannerComponent;$apparelDEContentCV[unique=true];uid[unique=true];name;&componentRef;$apparelDEPicture[lang=$defaultLanguage];urlLink
+;;SiteLogoComponent;Site Logo Component;SiteLogoComponent;/images/theme/logo-hybris.png:apparel-deContentCatalog:Staged;"/"

@@ -1,0 +1,18 @@
+
+
+#
+# Import Delivery Modes / Zones
+#
+#% impex.setLocale(Locale.GERMAN)
+
+# Currencies
+$usCurrency=USD
+
+# Language
+$lang=en
+
+# Zone Delivery Modes
+insert_update ZoneDeliveryMode; code[unique=true];net;active[default=false]
+;pickup-net;
+;pickup-gross;
+

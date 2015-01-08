@@ -1,0 +1,12 @@
+########### Apparel-UK #######################
+$apparelUKContentCatalog=apparel-ukContentCatalog
+$apparelUKContentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$apparelUKContentCatalog]),CatalogVersion.version[default=Staged])[default=$apparelUKContentCatalog:Staged]
+$apparelUKPicture=media(code, $apparelUKContentCV)
+
+$defaultLanguage=en
+
+REMOVE Media;$apparelUKContentCV[unique=true];code[unique=true]
+;;ApparelAccentureLogo
+
+INSERT_UPDATE SimpleBannerComponent;$apparelUKContentCV[unique=true];uid[unique=true];name;&componentRef;$apparelUKPicture[lang=$defaultLanguage];urlLink
+;;SiteLogoComponent;Site Logo Component;SiteLogoComponent;/images/theme/logo-hybris.png:apparel-ukContentCatalog:Staged;"/"
