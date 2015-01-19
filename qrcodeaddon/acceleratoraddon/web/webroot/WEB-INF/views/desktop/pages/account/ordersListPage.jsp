@@ -14,61 +14,34 @@
 <!DOCTYPE html>
 <html lang="${currentLanguage.isocode}">
 	<head>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+	
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-		<title>CSR Dashboard</title>
+		<title>Orders Dashboard</title>
 		<link type="text/css" rel="stylesheet" href="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_css/style.css" />
 		<script type="text/javascript">
-			setTimeout(function () { 
-				$.ajax({
-					type : 'GET',
-					url : "${contextPath}/orderslist/orders",
-					data : "size="+${Queued}+"&status="+'${param.status}',
-					dataType : 'json',
-					success : function(response) {
-						$("#main_content_blk").html(response.orders_list);
-						$('#diagram-id-1').diagram({ 
-							size: "60",
-							borderWidth: "8",
-							bgFill: "#efefef",
-							frFill: "#13ccde",
-							textSize: 20,
-							textColor: '#626262'
-						});
-						
-						$('#diagram-id-2').diagram({ 
-							size: "60",
-							borderWidth: "8",
-							bgFill: "#efefef",
-							frFill: "#13ccde",
-							textSize: 20,
-							textColor: '#626262'
-						});
-						
-						$('#diagram-id-3').diagram({ 
-							size: "60",
-							borderWidth: "8",
-							bgFill: "#efefef",
-							frFill: "#13ccde",
-							textSize: 20,
-							textColor: '#626262'
-						});
-						
-						$('#diagram-id-4').diagram({ 
-							size: "60",
-							borderWidth: "8",
-							bgFill: "#efefef",
-							frFill: "#ffd200",
-							textSize: 20,
-							textColor: '#626262'
-						});
-					},
-					error : function(e) {
-						//$("#invalidUCOID").append("Please enter the valid UCOID");
-					}
-				});
-			}, 60000);
+	
+		$(document).ready(function() {
 			
+			setTimeout(function () {
+				
+
+				$.ajax({
+				type : 'GET',
+				url : "orderslist/orders",
+				data : "size="+${Queued}+"&status="+'${param.status}',
+				success : function(response) {
+					$("a").removeClass("current");
+					
+					$("#main_content_blk").html(response.orders_list);
+				},
+				error : function(e) {
+					//alert("No customer has logged in yet"+e);
+				}
+			});
+			window.location.href="${contextPath}/orderslist/vieworders?size="+'${Queued}'+"&status="+'${param.status}';}, 10000);
+		});
 		</script> 
 	</head>
 	<body>
@@ -109,7 +82,15 @@
 			</div>
 			<!--Content Ends here--> 
 		</div>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+		<c:if test="${not empty param.size && Queued!=param.size}">
+			<script type="text/javascript">
+				var audio = {};
+				audio["walk"] = new Audio();
+				audio["walk"].src = '${commonResourcePath}'+"/../../addons/qrcodeaddon/desktop/common/bnc_audio/bellring01.mp3"			
+				audio["walk"].play();
+				document.getElementById("bell_number").innerHTML = ${Queued};
+			</script>
+		</c:if>
 		<script src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/jquery.diagram.js"></script> 
 		<script src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/script.js"></script>
 		<bnc:csr_script />

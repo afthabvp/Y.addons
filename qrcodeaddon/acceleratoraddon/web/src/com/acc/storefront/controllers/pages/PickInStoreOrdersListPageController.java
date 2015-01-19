@@ -121,10 +121,12 @@ public class PickInStoreOrdersListPageController extends AbstractAddOnPageContro
 	}
 
 	@SuppressWarnings("boxing")
-	@RequestMapping(value = ORDERS, method = RequestMethod.GET, produces = "application/json")
-	public String getAjaxOrdersList(final Model model, final HttpServletRequest request, final HttpServletResponse response)
+	@RequestMapping(value = ORDERS, method = RequestMethod.GET)
+	public String getAjaxOrdersList(final Model model, final HttpServletRequest request, final HttpServletResponse response,produces = "application/json")
 			throws CMSItemNotFoundException
 	{
+		
+		LOG.info("-----------------------------inside getorderajax method----------------------");
 		final List<CollectOrderData> collectOrderDataList = customerCollectOrderFacade.getCollectOrders();
 		model.addAttribute("Queued", getStatusCount(collectOrderDataList, CollectOrderStatus.PENDING));
 		model.addAttribute("Active", getStatusCount(collectOrderDataList, CollectOrderStatus.COMPLETED));

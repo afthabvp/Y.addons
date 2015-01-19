@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Jan 14, 2015 5:20:27 PM                     ---
+ * --- Generated at Jan 12, 2015 4:27:15 PM                     ---
  * ----------------------------------------------------------------
  */
 package com.accenture.constants;
@@ -42,8 +42,8 @@ public class GeneratedQrcodeaddonConstants
 		public static class CSRStoreStatus
 		{
 			public static final String INSERVICE = "InService".intern();
-			public static final String LOGGEDIN = "LoggedIn".intern();
 			public static final String NOTHANKS = "NoThanks".intern();
+			public static final String LOGGEDIN = "LoggedIn".intern();
 			public static final String COMPLETED = "Completed".intern();
 		}
 	}
