@@ -14,32 +14,14 @@
 <!DOCTYPE html>
 <html lang="${currentLanguage.isocode}">
 	<head>
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
-	
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 		<title>Orders Dashboard</title>
 		<link type="text/css" rel="stylesheet" href="${commonResourcePath}/../../addons/qrcodeaddon/mobile/common/bnc_css/style.css" />
 		<script type="text/javascript">
-	
 		$(document).ready(function() {
+		setTimeout(function () {
 			
-			setTimeout(function () {
-				
-
-				$.ajax({
-				type : 'GET',
-				url : "orderslist/orders",
-				data : "size="+${Queued}+"&status="+'${param.status}',
-				success : function(response) {
-					$("a").removeClass("current");
-					
-					$("#main_content_blk").html(response.orders_list);
-				},
-				error : function(e) {
-					//alert("No customer has logged in yet"+e);
-				}
-			});
 			window.location.href="${contextPath}/orderslist/vieworders?size="+'${Queued}'+"&status="+'${param.status}';}, 10000);
 		});
 		</script> 
@@ -91,6 +73,7 @@
 				document.getElementById("bell_number").innerHTML = ${Queued};
 			</script>
 		</c:if>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
 		<script src="${commonResourcePath}/../../addons/qrcodeaddon/mobile/common/bnc_js/jquery.diagram.js"></script> 
 		<script src="${commonResourcePath}/../../addons/qrcodeaddon/mobile/common/bnc_js/script.js"></script>
 		<bnc:csr_script />

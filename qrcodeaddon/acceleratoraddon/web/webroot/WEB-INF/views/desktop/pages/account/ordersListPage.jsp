@@ -25,21 +25,7 @@
 		$(document).ready(function() {
 			
 			setTimeout(function () {
-				
-
-				$.ajax({
-				type : 'GET',
-				url : "orderslist/orders",
-				data : "size="+${Queued}+"&status="+'${param.status}',
-				success : function(response) {
-					$("a").removeClass("current");
-					
-					$("#main_content_blk").html(response.orders_list);
-				},
-				error : function(e) {
-					//alert("No customer has logged in yet"+e);
-				}
-			});
+			
 			window.location.href="${contextPath}/orderslist/vieworders?size="+'${Queued}'+"&status="+'${param.status}';}, 10000);
 		});
 		</script> 
