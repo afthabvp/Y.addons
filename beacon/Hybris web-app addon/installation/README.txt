@@ -23,13 +23,13 @@
 	
 5. Now perform following command to include and build qrcodeaddon and dataremovaladdon in the project.
 	
-	ant addoninstall -Daddonnames="qrcodeaddon, dataremovaladdon" -DaddonStorefront.yacceleratorstorefront="<<storefront name e.g. bncstorefront>>"
-	
+	ant addoninstall -Daddonnames="qrcodeaddon" -DaddonStorefront.yacceleratorstorefront="<<storefront name e.g. bncstorefront>>"
+	ant addoninstall -Daddonnames="dataremovaladdon" -DaddonStorefront.yacceleratorstorefront="<<storefront name e.g. bncstorefront>>"
 
 
 	In case there is already a webservices and webserviceshmc extension entry in localextensions.xml, then comment those entries and enter the above.
 
-6. Add the following entry in storefront’s spring-cms-config.xml
+6. Add the following entry in storefront’s spring-cms-config.xml(path->storefront\web\webroot\WEB-INF\config\spring-cms-config.xml)
 
 	<entry key="UCOIDOnOrderConfirmationComponent" value-ref="uCOIDOnOrderConfirmationComponentRenderer"/>
 	
