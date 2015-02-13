@@ -4,14 +4,14 @@ $(document).ready(function(){
 $("#slider1").tinycarousel();
 $( "#datepicker" ).datepicker({
 showOn: "button",
-buttonImage: "images/cal.png",
+buttonImage: "../../bnc_images/new/cal.png",
 buttonImageOnly: true,
 buttonText: "Select date"
 });
 
 $( "#datepicker1" ).datepicker({
 showOn: "button",
-buttonImage: "images/cal.png",
+buttonImage: "../../bnc_images/new/cal.png",
 buttonImageOnly: true,
 buttonText: "Select date"
 });
