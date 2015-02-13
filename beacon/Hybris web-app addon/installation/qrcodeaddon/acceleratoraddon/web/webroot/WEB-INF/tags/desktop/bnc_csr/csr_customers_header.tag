@@ -1,5 +1,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link type="text/css" rel="stylesheet" href="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_css/style_new.css" />
+
+<script  src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/datepicker.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/library.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/tabModule.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/jquery.tinycarousel.min.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/slideshow.min.js"></script>
 
 
  <script type="text/javascript">
@@ -11,68 +20,72 @@
     {
     	window.location.href="${contextPath}/customerlist/customerdeatils";
     }
+    
     </script>
-<div id="head">
-	<div class="contain_block">
-		<div id="menu_top"><a href="javascript:void(0);" class="mClose">Menu</a></div>
-		<div class="sitename">CSR Dashboard</div>
-		<div class="username_blk">
-			<div class="reminder">
-				<div class="bell"> <span class="remind_round" id="bell_number">${Queued}</span> </div>
-			</div>
-			<div class="divider"></div>
-			<div class="userblock">
-				<div class="user_photo"><img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/user_photo.png" alt=""/></div>
-				<c:if test="${CSR_USER eq null or CSR_USER eq ''}">
-					<c:redirect url="/login/csrLogin"/>
-				</c:if>
-				<div class="username">${fn:toUpperCase(CSR_USER)}</div>
-			</div>
-		</div>
-		</div>
-		<div class="hide_menu_block"></div>
-		<div class="mobile_leftnav">
-			<nav class="main-nav">
+
+  <!--Header Ends here-->
+    
+     <div id="hdr">
+	<div class="hdrc">
+	<div class="hdrl">
+	<a href="javascript:void(0);" class="mClose"><img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/new/menu-tile.png"/></a>
+
+
+		<ul class="dnon" id="lmenu">
+
 				<ol>
 					<li>
 						<a href="#" class="select"  onClick="redirectToCustomersDashboard()" style="border-top:1px solid #494949"   >
-							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/dashboard_icon.png" alt=""/>
+							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/new/dashboard_icon.png" alt=""/>
 							<span>Customers<br>Dashboard</span>
 						</a>
 					</li>
 					<li>
 						<a href="#" onClick="redirectToOrdersDashboard()" >
-							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/dashboard_icon.png" alt="" />
+							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/new/dashboard_icon.png" alt="" />
 							<span>Orders<br>Dashboard</span>
 						</a>
 					</li>
 					<div class="rest_nav" style="opacity:.4;display:block; ">
 					<li>
 						<a href="#">
-							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/search_icon.png" alt=""/>
+							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/new/search_icon.png" alt=""/>
 							<span class="singleline">Search</span>
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/notification_icon.png" alt=""/>
+							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/new/notification_icon.png" alt=""/>
 							<span class="singleline">Notifications</span>
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/myteam_icon.png" alt=""/>
+							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/new/myteam_icon.png" alt=""/>
 							<span class="singleline">My Team</span>
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/mytargets_icon.png" alt=""/>
+							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/new/mytargets_icon.png" alt=""/>
 							<span>My Targets <br>&amp; Performance</span>
 						</a>
 					</li>
 					</div>
 				</ol>
-			</nav>
-	</div>
+			</ul>
+			<span class="title">CSR Dashboard</span>
+			</div>
+			
+			<div class="hdrr">
+			
+			<a href="javascript:void(0);" class="ntfn">${Queued}</a>
+	<a href="javascript:void(0);" id="usrdd" class="usrd">
+<%-- 	<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/new/user.png" alt=""/>
+ --%>				<c:if test="${CSR_USER eq null or CSR_USER eq ''}">
+					<c:redirect url="/login/csrLogin"/>
+				</c:if>${fn:toUpperCase(CSR_USER)}</a>
+	
+		</div>
+		</div>
 </div>

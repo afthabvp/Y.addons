@@ -1,48 +1,62 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="datetime_block">
-	<c:set var="now" value="<%=new java.util.Date()%>" />
-	<div class="date_block">
-		<fmt:formatDate var="nowDate" value="${now}" pattern="dd.MM.yyyy"/>
-		<ul>
-			<li><a href="#"><img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/calender_icon.png" alt="calender" border="0"/></a></li>
-			<li>From :</li>
-			<li>
-				<input type="text" value="${nowDate}" id="searchTimeBarFromDate" onblur="javascript:getCustomersByFromDate();">
-			</li>
+<link type="text/css" rel="stylesheet" href="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_css/style_new.css" />
+
+<script  src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/datepicker.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/library.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/tabModule.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/jquery.tinycarousel.min.js"></script>
+<script type="text/javascript" src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/slideshow.min.js"></script>
+
+
+
+  <div class="ctsrc">
+ <c:set var="now" value="<%=new java.util.Date()%>" />
+ <fmt:formatDate var="nowDate" value="${now}" pattern="dd.MM.yyyy"/>
+			<div class="from">
+			
+			
+			
+				<span class="frmt">From:</span>
+				<input type="text" value="${nowDate}" id="datepicker" onblur="javascript:getCustomersByFromDate();"  class="inpfm" >
+			</div>
+			
+			<div class="from1">
 			<c:choose>
+			<c:when test="${param.status=='PENDING'}"> 
+				<span class="frmt">To:</span>
+				<input type="text" disabled value="${nowDate}" id="datepicker1" class="disable" onblur="javascript:getCustomersByFromDate();" class="inpfm">
+				
+				</c:when>
+				<c:otherwise> 
+				<span class="frmt">To:</span>
+				<input type="text"  value="${nowDate}" id="datepicker1"  onblur="javascript:getCustomersByFromDate();" class="inpfm">
+				
+				</c:otherwise>
+				</c:choose>
+				
+			</div>
 			
-		<c:when test="${param.status=='PENDING'}"> 
-		
-			<li>To :</li>
-			<li>
-				<input type="text" disabled value="${nowDate}" id="searchTimeBarToDate" class="disable" onblur="javascript:getCustomersByFromDate();">
-			</li>
-			</c:when>
 			
-			<c:otherwise> 
-			<li>To :</li>
-			<li>
-				<input type="text"  value="${nowDate}" id="searchTimeBarToDate"  onblur="javascript:getCustomersByFromDate();">
-			</li> 
+			<div class="from2 crbm">
+				<span class="frmt">From:</span>
+				<input type="text" value="00:00 AM" id="searchTimeBarFromTime" onblur="javascript:getCustomersByFromDate();" class="inpfm">
+			</div>
 			
-			</c:otherwise>
-			</c:choose> 
-		
-		</ul>
-	</div>
-	<div class="time_block">
-		<ul>
-			<li><a href="#"><img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/clock_icon.png" alt="clock" border="0"/></a></li>
-			<li>From :</li>
-			<li>
-				<input type="text" value="00:00 AM" id="searchTimeBarFromTime" onblur="javascript:getCustomersByFromDate();">
-			</li>
-			<li>To :</li>
-			<li>
+			<div class="from2">
+				<span class="frmt">To:</span>
 				<fmt:formatDate var="nowTime" value="${now}" pattern="hh:mm aa"/>
-				<input type="text" value="${nowTime}" id="searchTimeBarToTime" onblur="javascript:getCustomersByFromDate();">
-			</li>
-		</ul>
-	</div>
-</div>
+				<input type="text" value="${nowTime}" id="searchTimeBarToTime" onblur="javascript:getCustomersByFromDate();" class="inpfm">
+				
+			</div>
+			
+		</div>  
+	
+		
+		
+
+		
+		
+
