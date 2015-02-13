@@ -157,6 +157,12 @@
 			</div>
 		</div>
 		<!--Content Ends here-->
+		<!--Footer Area Starts here-->
+  		<div class="ftr"> © Accenture 2015, All Rights Reserved.</div>
+  		<!--Footer Area Ends here-->
+
+		<!-- Script includes -->
+		<script src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/new/launcher.js"></script>
 		<c:if test="${not empty param.size && Queued!=param.size}">
 			<script type="text/javascript">
 				var audio = {};
