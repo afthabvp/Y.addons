@@ -37,8 +37,8 @@
 			data : "customerPK="+customerPK,
 			dataType : 'json',
 			success : function(response) {
-				$("a").removeClass("current");
-				$("#"+customerPK).addClass("current");
+				$("a").removeClass("active");
+				$("#"+customerPK).addClass("active");
 				$("#customer_details_block").html(response.customer_details);
 			},
 			error : function(e) {
@@ -130,7 +130,7 @@
 	}
 	
 	$(document).ready(function() {
-		setTimeout(function () {window.location.href="${contextPath}/customerlist/customerdeatils?size="+'${Queued}'+"&status="+'${param.status}';}, 60000);
+		setTimeout(function () {window.location.href="${contextPath}/customerlist/customerdeatils?size="+'${Queued}'+"&status="+'${param.status}';}, 30000);
 	});
 	</script>
 	<meta charset="utf-8">

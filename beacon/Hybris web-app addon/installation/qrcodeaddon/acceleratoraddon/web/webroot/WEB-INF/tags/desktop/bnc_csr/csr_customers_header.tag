@@ -50,7 +50,7 @@
 			<span class="title">CSR Dashboard</span>
 		</div>
 		<div class="hdrr">
-			<a href="javascript:void(0);" class="ntfn">${Queued}</a> 
+			<a href="javascript:void(0);" class="ntfn" id="bell_number">${Queued}</a> 
 			<a href="javascript:void(0);" id="usrdd" class="usrd">
 				<c:if test="${CSR_USER eq null or CSR_USER eq ''}">
 					<c:redirect url="/login/csrLogin" />
