@@ -78,20 +78,20 @@
 	{
 		
 		
-		var fdate = document.getElementById('datepicker').value;
-		var tdate = document.getElementById('datepicker1').value;
+		var fdate = document.getElementById('searchTimeBarFromDate').value;
+		var tdate = document.getElementById('searchTimeBarToDate').value;
 		var ftime = document.getElementById('searchTimeBarFromTime').value;
 		var ttime = document.getElementById('searchTimeBarToTime').value;
 		if (fdate =='' ) 
 		{ 
 			alert("Please enter the from Date!");
-			document.getElementById('datepicker').focus();
+			document.getElementById('searchTimeBarFromDate').focus();
 			return false;
 		}
 		if (tdate =='' ) 
 		{ 
 			alert("Please enter the to Date!");
-			document.getElementById('datepicker1').focus();
+			document.getElementById('searchTimeBarToDate').focus();
 			return false;
 		}
 		if (ftime =='' ) 
