@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="ctsrc">
 	<c:set var="now" value="<%=new java.util.Date()%>" />
-	<fmt:formatDate var="nowDate" value="${now}" pattern="MM/dd/yyyy" />
+	<fmt:formatDate var="nowDate" value="${now}" pattern="dd/MM/yyyy" />
 	<div class="from">
 		<span class="frmt">From:</span> 
 		<input type="text" value="${nowDate}" id="datepicker" onblur="javascript:getCustomersByFromDate();"	class="inpfm"/>

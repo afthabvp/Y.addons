@@ -3,6 +3,7 @@
 <%@ taglib prefix="bnc" tagdir="/WEB-INF/tags/addons/qrcodeaddon/desktop/bnc_csr" %>
 <json:object>
 	<json:property name="customer_details" escapeXml="false">
+		<bnc:customerDetailsButtons/>
 		<bnc:customerDetailInformation/>
 	</json:property>
 </json:object>
