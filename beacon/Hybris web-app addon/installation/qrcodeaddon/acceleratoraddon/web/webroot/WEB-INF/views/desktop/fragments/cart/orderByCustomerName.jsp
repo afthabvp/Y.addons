@@ -4,30 +4,36 @@
 <%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
 <json:object>
 	<json:property name="searchby_customername" escapeXml="false">
-		<div class="cntl">
-			<div class="srch"><input type="text" value="" placeholder="Search" class="inpt" id="customername" onblur="javascript:searchByCustomerName();"/></div>
-			<ul id="slimtest">
+		<div id="order_menu">
+			<ul>
+				<li class="search_padding"><input type="text" value=""
+					placeholder="Search " name="q" class="search-text placeholder" id="customername" onblur="javascript:searchByCustomerName();">
+				</li>
 				<c:forEach items="${collectOrderDataByCustomerName}" var="logedInUser" varStatus="counter">
 					<c:set var="currentClass" value=""/>
 					<c:if test="${counter.count==1}">
-						<c:set var="currentClass" value='class="active"'/>
+						<c:set var="currentClass" value='class="current"'/>
 						<input type="hidden" id="currentUserId" value="${logedInUser.pk}"/>
 					</c:if>
 					<li>
 						<a id="${logedInUser.pk}" onclick="javascript:getCustomerDetails('${logedInUser.pk}');" ${currentClass}>
-							<img src="${logedInUser.profilePictureURL}" class="fl"/>
-							<div class="fl pdg">
-								${logedInUser.customerName}<br/>
-								<span class="time">
-									Logged in by ${logedInUser.loginTime}
+							<span class="menuperson">
+								<c:set var="imageUrl" value="${logedInUser.profilePictureURL}"/>
+								<c:if test="${empty imageUrl}">
+									<c:set var="imageUrl" value="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/Dummy.jpg"/>
+								</c:if> 
+								<img src="${logedInUser.profilePictureURL}" />
+							</span>
+							${logedInUser.customerName}<br /> 
+							<span>
+								Logged in by ${logedInUser.loginTime}
+							</span>
+							<c:if test="${logedInUser.status=='INSERVICE' || logedInUser.status=='COMPLETED'}">
+								<br>
+								<span>
+									${logedInUser.status} assisted by ${logedInUser.processedBy}
 								</span>
-								<c:if test="${logedInUser.status=='INSERVICE' || logedInUser.status=='COMPLETED'}">
-									<br>
-									<span class="time">
-										${logedInUser.status} assisted by ${logedInUser.processedBy}
-									</span>
-								</c:if>
-							</div>
+							</c:if>
 						</a>
 					</li>
 				</c:forEach>
