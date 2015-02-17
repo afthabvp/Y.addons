@@ -6,7 +6,7 @@
 		if(document.getElementById("currentUserId")!=null)
 		{
 			getCustomerDetails(document.getElementById("currentUserId").value);
-			setTimeout(function () {$("#accordion").accordion();}, 3000);
+			setTimeout(function () {$("#accordion").accordion();}, 5000);
 		}
 	});
 	
@@ -29,7 +29,7 @@
 						<c:if test="${empty imageUrl}">
 							<c:set var="imageUrl" value="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/Dummy.jpg"/>
 						</c:if>
-             		<img src="${imageUrl}" alt=""/>
+             		<img src="${imageUrl}" alt="" style="height: 77px;width: 65px;"/>
 					</span>
 					${logedInUser.customerName}<br /> 
 					<span>

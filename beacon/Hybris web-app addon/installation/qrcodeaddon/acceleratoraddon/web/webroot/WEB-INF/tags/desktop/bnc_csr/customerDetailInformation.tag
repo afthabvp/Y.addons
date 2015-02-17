@@ -8,7 +8,7 @@
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#accordion").accordion();
+	setTimeout(function () {$("#accordion").accordion();}, 5000);
 });
 </script>
 <div class="content_tabel">

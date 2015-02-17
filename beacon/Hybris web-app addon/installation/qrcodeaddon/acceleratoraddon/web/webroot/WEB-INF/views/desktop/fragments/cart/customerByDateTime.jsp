@@ -26,7 +26,7 @@
 							<c:if test="${empty imageUrl}">
 								<c:set var="imageUrl" value="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/Dummy.jpg"/>
 							</c:if> 
-							<img src="${imageUrl}" />
+							<img src="${imageUrl}" style="height: 77px;width: 65px;"/>
 						</span> ${logedInUser.customerName}<br /> <span> Logged in by
 								${logedInUser.loginTime} </span> <c:if
 								test="${logedInUser.status=='INSERVICE' || logedInUser.status=='COMPLETED'}">

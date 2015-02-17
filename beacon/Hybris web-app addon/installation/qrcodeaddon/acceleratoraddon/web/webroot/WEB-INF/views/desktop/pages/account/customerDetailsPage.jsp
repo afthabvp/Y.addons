@@ -68,7 +68,7 @@
 				if(document.getElementById("currentUserId")!=null)
 				{
 					getCustomerDetails(document.getElementById("currentUserId").value);
-					setTimeout(function () {$("#accordion").accordion();}, 3000);
+					setTimeout(function () {$("#accordion").accordion();}, 5000);
 				} 
 			},
 			error : function(e) {
@@ -133,7 +133,7 @@
 	}
 	
 	$(document).ready(function() {
-		setTimeout(function () {window.location.href="${contextPath}/customerlist/customerdeatils?size="+'${Queued}'+"&status="+'${param.status}';}, 60000);
+		setTimeout(function () {window.location.href="${contextPath}/customerlist/customerdeatils?size="+'${Queued}'+"&status="+'${param.status}';}, 120000);
 	});
 	</script>
 	<script src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/jquery.knob.js"></script>
