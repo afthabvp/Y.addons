@@ -10,6 +10,10 @@
 
 <json:object>
 	<json:property name="Personal_Details" escapeXml="false">
+		<script src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/jquery.js"></script>
+		<script src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/amazingcarousel.js"></script>
+		<link rel="stylesheet" type="text/css" href="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_css/initcarousel-1.css">
+		<script src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_js/initcarousel-1.js"></script>
 		<script type="text/javascript">
 		  document.getElementById("orderDetailsTab").innerHTML = 
 			  "<a onclick='javascript:OrderDetailsByOrderID(\"${orderCode}\");'>Order Details</a>"; 
@@ -95,103 +99,45 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
             </tr>
-            <tr>
-              <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td colspan="2" class="grayheading">Shopping Trend</td>
-                  </tr>
-                  <tr>
-                    <td width="16%">&nbsp;</td>
-                    <td width="84%">&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td class="smallgraytxt">Electronics</td>
-                    <td><div class="meter orange nostripes"> <span style="width: 160px; height:6px"></span> </div></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" height="10"></td>
-                  </tr>
-                  <tr>
-                    <td class="smallgraytxt">Groceries</td>
-                    <td><div class="meter orange nostripes"> <span style="width: 250px; height:6px"></span> </div></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" height="10"></td>
-                  </tr>
-                  <tr>
-                    <td class="smallgraytxt">Stationary</td>
-                    <td><div class="meter orange nostripes"> <span style="width: 40px; height:6px"></span> </div></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" height="10"></td>
-                  </tr>
-                  <tr>
-                    <td class="smallgraytxt">Home Decor</td>
-                    <td><div class="meter orange nostripes"> <span style="width: 140px; height:6px"></span> </div></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                  </tr>
-                </table></td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
             <c:if test="${not empty productData}">
             <tr>
               <td colspan="2" class="grayheading">Recently Viewed</td>
             </tr>
             <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
               <td colspan="2">
-				<div id="caurosel_block">
-					<div class="left_arrow">
-						<a href="#">
-							<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/arrow_left.png" alt="" border="0"/>
-						</a>
+				<div style="margin:0px auto;">
+					<!-- Insert to your webpage where you want to display the carousel -->
+					<div id="amazingcarousel-container-1">
+					    <div id="amazingcarousel-1" style="display:block;position:relative;width:100%;max-width:720px;margin:0px auto 0px;">
+					        <div class="amazingcarousel-list-container">
+					            <ul class="amazingcarousel-list">
+					            	<c:forEach items="${productData}" var="product">
+										<c:url value="${product.url}" var="productQuickViewUrl" />
+										<li class="amazingcarousel-item">
+						                    <div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image">
+													<a href="${productQuickViewUrl}" title="${fn:substring(product.name,0,20)}"  class="html5lightbox" data-group="amazingcarousel-1">
+														<div class="thumb">
+															<product:productPrimaryImage product="${product}" format="thumbnail"/>
+														</div>
+													</a>
+												</div>
+												<div class="amazingcarousel-title">
+													${fn:substring(product.name,0,20)}<br>
+													<format:fromPrice priceData="${product.price}"/>
+												</div>                    
+											</div>
+						                </li>
+									</c:forEach>
+					            </ul>
+					            <div class="amazingcarousel-prev"></div>
+					            <div class="amazingcarousel-next"></div>
+					        </div>
+					        <div class="amazingcarousel-nav"></div>
+					    </div>
 					</div>
-					<div class="caurosel_center_block">
-						<c:forEach items="${productData}" var="product">
-							<c:url value="${product.url}" var="productQuickViewUrl" />
-							<div class="caurosel_widget">
-							  <div class="caurosel_img">
-									<div class="thumb">
-										<product:productPrimaryImage product="${product}" format="thumbnail"/>
-									</div>
-							  </div>
-							  <div class="caurosel_text">${fn:substring(product.name,0,20)}<br>
-							    <format:fromPrice priceData="${product.price}"/>
-							   </div>
-							</div>
-						</c:forEach>
-					</div>
-					<div class="right_arrow"><a href="#"><img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/arrow_right.png" alt=""  border="0"/></a></div>
-				 </div>
+					<!-- End of body section HTML codes -->
+				</div>
                </td>
             </tr>
             </c:if>
@@ -211,40 +157,39 @@
             <tr>
               <td colspan="2" class="grayheading">Wishlist</td>
             </tr>
-           <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            
              <tr>
-              
-              <td colspan="2"><div id="caurosel_block">
-             
-                  <div class="left_arrow"><a href="#"><img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/arrow_left.png" alt="" border="0"/></a></div>
-                  <div class="caurosel_center_block">
-                  	<c:forEach items="${wishlist.entries}" var="wishlist">
-						<div class="caurosel_widget">
-	                      <div class="caurosel_img">
-								<div class="thumb">
-									<product:productPrimaryImage product="${wishlist.product}" format="thumbnail"/>
-								</div>
-							</div>
-	                      <div class="caurosel_text">${fn:substring(wishlist.product.name,0,20)}<br>
-	                        <format:fromPrice priceData="${wishlist.product.price}"/></div>
-	                    </div>
-					</c:forEach>
-                  </div>
-                  <div class="right_arrow"><a href="#"><img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/arrow_right.png" alt=""  border="0"/></a></div>
-                 
-                </div>
+              <td colspan="2">
+					<div style="margin:0px auto;">
+						<div id="amazingcarousel-container-2">
+						    <div id="amazingcarousel-2" style="display:block;position:relative;width:100%;max-width:720px;margin:0px auto 0px;">
+						        <div class="amazingcarousel-list-container">
+						            <ul class="amazingcarousel-list">
+						            	<c:forEach items="${wishlist.entries}" var="wishlist">
+											<c:url value="${wishlist.product.url}" var="productQuickViewUrl" />
+											<li class="amazingcarousel-item">
+							                    <div class="amazingcarousel-item-container">
+													<div class="amazingcarousel-image">
+														<a href="${productQuickViewUrl}" title="${fn:substring(wishlist.product.name,0,20)}"  class="html5lightbox" data-group="amazingcarousel-2">
+															<div class="thumb">
+																<product:productPrimaryImage product="${wishlist.product}" format="thumbnail"/>
+															</div>
+														</a>
+													</div>
+													<div class="amazingcarousel-title">
+														${fn:substring(wishlist.product.name,0,20)}<br>
+														<format:fromPrice priceData="${wishlist.product.price}"/>
+													</div>                    
+												</div>
+							                </li>
+										</c:forEach>
+						            </ul>
+						            <div class="amazingcarousel-prev"></div>
+						            <div class="amazingcarousel-next"></div>
+						        </div>
+						        <div class="amazingcarousel-nav"></div>
+						    </div>
+						</div>
+					</div>
                 </td>
                 
             </tr>
@@ -270,46 +215,38 @@
 	              <td colspan="2" class="grayheading">Recommended Products</td>
 	            </tr>
 	            <tr>
-	              <td>&nbsp;</td>
-	              <td>&nbsp;</td>
-	            </tr>
-	            <tr>
-	              <td>&nbsp;</td>
-	              <td>&nbsp;</td>
-	            </tr>
-	            <tr>
-	              <td>&nbsp;</td>
-	              <td>&nbsp;</td>
-	            </tr>
-	            <tr>
-	              <td>&nbsp;</td>
-	              <td>&nbsp;</td>
-	            </tr>
-	            <tr>
 	              <td colspan="2">
-					<div id="caurosel_block">
-						<div class="left_arrow">
-							<a href="#">
-								<img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/arrow_left.png" alt="" border="0"/>
-							</a>
+						<div style="margin:0px auto;">
+							<div id="amazingcarousel-container-3">
+							    <div id="amazingcarousel-3" style="display:block;position:relative;width:100%;max-width:720px;margin:0px auto 0px;">
+							        <div class="amazingcarousel-list-container">
+							            <ul class="amazingcarousel-list">
+							            	<c:forEach items="${recommendedProductsData}" var="product">
+												<c:url value="${product.url}" var="productQuickViewUrl" />
+												<li class="amazingcarousel-item">
+								                    <div class="amazingcarousel-item-container">
+														<div class="amazingcarousel-image">
+															<a href="${productQuickViewUrl}" title="${fn:substring(product.name,0,20)}"  class="html5lightbox" data-group="amazingcarousel-3">
+																<div class="thumb">
+																	<product:productPrimaryImage product="${product}" format="thumbnail"/>
+																</div>
+															</a>
+														</div>
+														<div class="amazingcarousel-title">
+															${fn:substring(product.name,0,20)}<br>
+															<format:fromPrice priceData="${product.price}"/>
+														</div>                    
+													</div>
+								                </li>
+											</c:forEach>
+							            </ul>
+							            <div class="amazingcarousel-prev"></div>
+							            <div class="amazingcarousel-next"></div>
+							        </div>
+							        <div class="amazingcarousel-nav"></div>
+							    </div>
+							</div>
 						</div>
-						<div class="caurosel_center_block">
-							<c:forEach items="${recommendedProductsData}" var="product">
-								<c:url value="${product.url}" var="productQuickViewUrl" />
-								<div class="caurosel_widget">
-								  <div class="caurosel_img">
-										<div class="thumb">
-											<product:productPrimaryImage product="${product}" format="thumbnail"/>
-										</div>
-								  </div>
-								  <div class="caurosel_text">${fn:substring(product.name,0,20)}<br>
-								    <format:fromPrice priceData="${product.price}"/>
-								   </div>
-								</div>
-							</c:forEach>
-						</div>
-						<div class="right_arrow"><a href="#"><img src="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/arrow_right.png" alt=""  border="0"/></a></div>
-					 </div>
 	               </td>
 	            </tr>
             </c:if>
