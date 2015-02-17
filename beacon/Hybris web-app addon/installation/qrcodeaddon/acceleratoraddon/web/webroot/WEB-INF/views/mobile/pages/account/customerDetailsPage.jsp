@@ -185,7 +185,7 @@
 			<script type="text/javascript">
 				var audio = {};
 				audio["walk"] = new Audio();
-				audio["walk"].src = '${commonResourcePath}'+"/../../addons/qrcodeaddon/mobile/common/bnc_audio/bellring01.mp3"			
+				audio["walk"].src = '${commonResourcePath}'+"/../../addons/qrcodeaddon/mobile/common/bnc_audio/customerRing.mp3"			
 				audio["walk"].play();
 				document.getElementById("bell_number").innerHTML = ${Queued};
 			</script>
