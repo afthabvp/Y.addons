@@ -22,7 +22,7 @@
 								<c:if test="${empty imageUrl}">
 									<c:set var="imageUrl" value="${commonResourcePath}/../../addons/qrcodeaddon/desktop/common/bnc_images/Dummy.jpg"/>
 								</c:if> 
-								<img src="${logedInUser.profilePictureURL}" />
+								<img src="${imageUrl}" />
 							</span>
 							${logedInUser.customerName}<br /> 
 							<span>
