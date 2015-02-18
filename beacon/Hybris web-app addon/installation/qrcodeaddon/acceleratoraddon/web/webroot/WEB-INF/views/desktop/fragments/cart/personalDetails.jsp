@@ -63,11 +63,11 @@
               <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                       <td width="43%" class="graytext">Address</td>
-                      <td width="57%" class="graytext">Postal Code</td> 
+                      <td width="57%" class="graytext"></td> 
                     </tr>
                     <tr>
-                     <td class="bluetext"> ${useraddress.line1} <br/>${useraddress.line2} <br/> ${useraddress.town}<br/> ${useraddress.country.name} </td>				   
-                     <td class="bluetext">${useraddress.postalcode}</td>
+                     <td class="bluetext"> ${useraddress.line1}, ${useraddress.line2}<br> ${useraddress.town}<br/> ${useraddress.country.name}<br>${useraddress.postalcode}</td>				   
+                     <td class="bluetext"></td>
                     </tr>
                 </table></td>
             </tr>
@@ -79,11 +79,11 @@
               <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                    <tr>
                       <td width="43%" class="graytext">Email</td>
-                      <td width="57%" class="graytext">Phone Number</td>
+                      <td width="57%" class="graytext"></td>
                     </tr>
                     <tr>
                       <td class="bluetext">${useraddress.email}</td>
-                      <td class="bluetext">${customerModel.phoneNumbers}</td>
+                      <td class="bluetext"></td>
                     </tr>
                 </table></td>
             </tr>
