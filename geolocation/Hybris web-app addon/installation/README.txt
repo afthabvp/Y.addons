@@ -14,11 +14,21 @@
 1. Place the healthpromotionsaddon, qrcodeaddon, servicecore extensions in custom folder of hybris (location:bin/custom)
 2. Add the following entries in local.properties file (under hybris/config)
 
-	healthdata.heartrate.thresholdvalue=150.000000
-	healthdata.stepcount.thresholdvalue=2285.000000
-	healthdata.bodymass.thresholdvalue=120.000000
-	healthdata.cholesterol.thresholdvalue=14.000000
-	healthdata.fattotal.thresholdvalue=52.000000
+	#####User Defined Properties#####
+	#Rain
+	min.precipitation.light=0.1
+	max.precipitation.light=2.5
+	min.precipitation.moderate=2.6
+	max.precipitation.moderate=7.6
+
+	#temperature
+	max.required.temperature.for.snowfall=0
+
+	#Cloudy #cloud cover
+	min.cloud.cover.partly.cloudy=40
+	max.cloud.cover.partly.cloudy=60
+	min.cloud.cover.mostly.cloudy=60
+	max.cloud.cover.mostly.cloudy=100
 	
 	welcome.beacon.id=8492E75F-4FD6-469D-B132-043FE94921D8
 	welcome.beacon.major.id=6517
