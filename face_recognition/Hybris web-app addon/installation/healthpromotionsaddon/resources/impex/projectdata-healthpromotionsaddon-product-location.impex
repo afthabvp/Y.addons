@@ -1,0 +1,48 @@
+$productCatalog=electronicsProductCatalog
+$productCatalogName=Electronics Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE Product;code[unique=true];beaconId;location;;$catalogVersion
+
+
+;prod_1000;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1001;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1002;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1003;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1004;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1005;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1006;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1007;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1008;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1009;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1010;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2B|Wing 4|Floor 3
+;prod_1011;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1012;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1013;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1014;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1015;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1016;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1017;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1018;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1019;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1020;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1B|Wing 2|Floor 3
+;prod_1021;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 1A|Wing 1|Floor 3
+;prod_1022;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 1A|Wing 1|Floor 3
+;prod_1023;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 1A|Wing 1|Floor 3
+;prod_1024;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 1A|Wing 1|Floor 3
+;prod_1025;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 1A|Wing 1|Floor 3
+;prod_1026;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 1A|Wing 1|Floor 3
+;prod_1027;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 1A|Wing 1|Floor 3
+;prod_1028;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 1A|Wing 1|Floor 3
+;prod_1029;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 1A|Wing 1|Floor 3
+;prod_1030;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 2A|Wing 3|Floor 3
+;prod_1031;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 2A|Wing 3|Floor 3
+;prod_1032;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 2A|Wing 3|Floor 3
+;prod_1033;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 2A|Wing 3|Floor 3
+;prod_1034;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 2A|Wing 3|Floor 3
+;prod_1035;d2afdf3e-34eb-41f8-8c3f-f9ed26fa954e;Aisle 2A|Wing 3|Floor 3
+;prod_1036;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2C|Wing 4|Floor 3
+;prod_1037;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2C|Wing 4|Floor 3
+;prod_1038;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2C|Wing 4|Floor 3
+;prod_1039;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2C|Wing 4|Floor 3
+;prod_1040;12168afc-c27e-4845-ba90-e7b5484bdbba;Aisle 2C|Wing 4|Floor 3

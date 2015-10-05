@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<!--
+	The hybris platform provides one single Spring application context for beans located at the jalo layer.
+	Each extension can add beans to this context by specifying them at this configuration file.
+	 
+	You can use and/or redefine beans defined at configuration files of other extensions as well as
+	adding new one.
+		
+	If you want to locate this file at a different location or want to use several files for better,
+	structuring, please use the '<yourextension>.application-context' property at your project.properties file.
+	There you can specify a comma separated list of files where first is tried to find a file per classpath and
+	then per file system.
+	
+	Please be aware of the special 'tenant' scope. If you have a multi tenant system you mostly have to use this
+	scope instead of the default Spring 'singleton' scope.
+	
+	If you want to configure beans for your web module please have a look at
+	your web/webroot/WEB-INF/<extname>-web-spring.xml.
+	-->
+	
+	<!--  Example how to override a manager -->
+	<!--
+	<bean id="core.productManager"   class="com.acc.jalo.FacerecognitionaddonProductManager" 	init-method="init"	destroy-method="destroy" scope="tenant" />
+	-->
+	
+	
+ 	<!--  Example how to configure the class to use for jalo session creation -->
+	<!--
+	<bean id="jalosession"   class="de.hybris.platform.jalo.JaloSessionFactory">
+		<property name="targetClassName" value="com.acc.jalo.FacerecognitionaddonJaloSession"/>
+	</bean>
+	-->
+
+	
+	<!--  Example how to override an item  -->
+	<!-- 
+	<bean id="de.hybris.platform.jalo.product.Product" class="com.acc.jalo.FacerecognitionaddonProduct" scope="prototype" />		
+ 	-->
+
+	<!--  
+	 Example how to register and use an AOP aspect 
+     Also see http://static.springframework.org/spring/docs/2.5.x/reference/aop.html	
+     -->
+	
+	<!-- 
+	<bean id="facerecognitionaddonProfBean" class="com.acc.aop.FacerecognitionaddonProfilingAspect"/>
+	<aop:config proxy-target-class="true">
+  		<aop:aspect id="facerecognitionaddonProfAspect" ref="facerecognitionaddonProfBean" >
+    	  <aop:pointcut id="profiledMethods" 
+	      	expression="execution(* getModificationTime(..))" />  	            
+	   		<aop:around pointcut-ref="profiledMethods" method="profile" />
+  		</aop:aspect>
+	</aop:config>
+	 -->
+
+	
+	<!-- some other examples of a pointcut that matches everything:
+
+    	  <aop:pointcut id="profiledMethods" 
+	      	expression="bean(de.hybris.platform.jalo.user.Customer) &amp;&amp; 
+	      	            !execution(* getPK(..))" />  	            
+	       <aop:pointcut id="profiledMethods" expression="execution(* *(..))" />	
+	  -->
+	<bean id="mDIYSaveCustomerDataFacade" class="com.acc.facade.impl.MDIYSaveCustomerDataFacadeImpl">
+		<property name="userService" ref="userService"/>
+		<property name="mdiySaveCustomerDataService" ref="mdiySaveCustomerDataService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="mediaService" ref="mediaService"/>
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+		<property name="setupSyncJobService" ref="setupSyncJobService"/>
+	</bean>	
+
+	<!-- <bean id="profileHelper" class="ProfileHelper_path" > 
+	</bean> -->
+	     
+	<bean id="imageQualityPopulator" class="com.acc.populator.ImageQualityPopulator">
+	</bean>
+	<bean id="imageQualityData" class="com.acc.data.ImageQualityData" scope="prototype"/>
+
+	<bean id="imageQualityConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="imageQualityData "/>
+		<property name="populators">
+			<list>
+				<ref bean="imageQualityPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customerDataConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="customerData"/>
+		<property name="populators">
+			<list>
+				<ref bean="customerPopulator"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="mdiySaveCustomerDataService" class="com.acc.service.impl.MDIYSaveCustomerDataServiceImpl">
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	
+<!-- 	<bean id=" submitUserProfileService "  -->
+<!--               class="<full path as in middleware jar file>.ApplicationSubmitUserInterface"> -->
+<!-- 	</bean> -->
+	
+	
+	<bean id="mdiYSubmitUserFacade" class="com.acc.facade.impl.MDIYSubmitUserFacadeImpl">
+		<property name="mdiYSubmitUserService" ref="mdiYSubmitUserService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+		
+	<bean id="mdiYSubmitUserService" class="com.acc.service.impl.MDIYSubmitUserServiceImpl">
+		<property name="mdiYSubmitUserDao" ref="mdiYSubmitUserDao"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	
+	<bean id="mdiYSubmitUserDao" class="com.acc.dao.impl.MDIYSubmitUserDaoImpl">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	
+	<bean id="customCsrCustomerDetailsPopulator" class="com.acc.populator.MDIYCSRCustomerPopulator">
+	</bean>
+	
+	<bean id="mdiUser" class="com.frs.bean.MDIUser">
+	</bean>
+	
+	<bean id="customCsrCustomerDetailsConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="mdiUser"/>
+		<property name="populators">
+			<list>
+				<ref bean="customCsrCustomerDetailsPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="mDIYImageToBase64Populator" class="com.acc.populator.MDIYImageToBase64Populator">
+	</bean>
+	<bean id="mdiYImagesToStringConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="java.lang.String"/>
+		<property name="populators">
+			<list>
+				<ref bean="mDIYImageToBase64Populator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="mDIYCustomerInformationFacade" class="com.acc.facade.impl.MDIYCustomerInformationFacadeImpl">
+		<property name="mDIYCustomerInformationService" ref="mDIYCustomerInformationService"/>
+		<property name="storeLoginDao" ref="storeLoginDao"/>
+	</bean>
+		
+	<bean id="mDIYCustomerInformationService" class="com.acc.service.impl.MDIYCustomerInformationServiceImpl">
+		<property name="mDIYCustomerInformationDao" ref="mDIYCustomerInformationDao"/>
+	</bean>
+	
+	<bean id="mDIYCustomerInformationDao" class="com.acc.dao.impl.MDIYCustomerInformationDaoImpl">
+		<constructor-arg value="ImageQuality"/>
+	</bean>
+	
+	<bean id="mDIYBase64ToImagePopulator" class="com.acc.populator.MDIYBase64ToImagePopulator">
+	</bean>
+	<bean id="mdiYBase64ToImageConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="imageQualityData"/>
+		<property name="populators">
+			<list>
+				<ref bean="mDIYBase64ToImagePopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="mDIYCustomerToCSRCustomerPopulator" class="com.acc.populator.MDIYCustomerToCSRCustomerPopulator">
+	</bean>
+	<bean id="mdiYCustomerToCSRCustomerConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="CSRCustomerDetailsModel"/>
+		<property name="populators">
+			<list>
+				<ref bean="mDIYCustomerToCSRCustomerPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="submitUserInterface" class="com.acc.general.impl.MDIYApplicationSubmitUserImpl">
+		<property name="mdiYSubmitUserService" ref="mdiYSubmitUserService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	
+	<bean id="requestResponseBean" class="com.frs.bean.MDIRequestResponseBean">
+	</bean>
+	
+	<bean id="mDIApplicationSubmitUserUtil" class="com.frs.submitUser.MDIApplicationSubmitUserUtil">
+		<property name="submitUserInterface" ref="submitUserInterface"/>
+		<property name="requestResponseBean" ref="requestResponseBean"/>
+	</bean>
+	
+	<bean id="mdiYConfigurationImpl" class="com.acc.configuration.MDIYConfigurationImpl">
+	</bean>
+	<bean id="mdiConfigurationUtils" class="com.frs.common.MDIConfigurationUtils" >
+        <constructor-arg index="0"><ref bean="mdiYConfigurationImpl"/></constructor-arg>
+	</bean>
+	
+	<bean id="persistCustomerImagesJob"
+			class="com.acc.job.PersistCustomerImagesJob"
+			parent="abstractJobPerformable">
+		<property name="mDIYCustomerInformationService" ref="mDIYCustomerInformationService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="mdiYImagesToStringConverter" ref="mdiYImagesToStringConverter"/>
+	</bean>
+	
+	<bean id="faceRecognitionRenderer"
+          class="com.acc.component.renderer.FaceRecognitionRenderer">
+          <property name="typeService" ref="typeService" />
+          <property name="uiExperienceService" ref="defaultUiExperienceService" />
+	</bean>
+</beans>

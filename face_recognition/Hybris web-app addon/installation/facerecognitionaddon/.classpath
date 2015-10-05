@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/platform"/>
+	<classpathentry exported="true" kind="src" path="/hmc"/>
+	<classpathentry exported="true" kind="lib" path="resources"/>
+	<classpathentry kind="src" output="eclipsebin/classes" path="src"/>
+	<classpathentry kind="src" output="eclipsebin/hmc/classes" path="hmc/src"/>
+	<classpathentry kind="src" output="eclipsebin/web/classes" path="web/src"/>
+	<classpathentry kind="src" output="eclipsebin/classes" path="testsrc"/>
+	<classpathentry kind="src" output="eclipsebin/classes" path="gensrc"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/acceleratorstorefrontcommons"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ytelcoacceleratorcore"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/yacceleratorstorefront"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/cms2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/addonsupport"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/cms2lib"/>
+	<classpathentry kind="lib" path="lib/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/org.json-chargebee-1.0.jar"/>
+	<classpathentry kind="src" path="/servicecore"/>
+	<classpathentry kind="lib" path="lib/jersey-bundle-1.19.jar"/>
+	<classpathentry kind="lib" path="lib/aopalliance-repackaged-2.4.0-b25.jar"/>
+	<classpathentry kind="lib" path="lib/asm-debug-all-5.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/hk2-api-2.4.0-b25.jar"/>
+	<classpathentry kind="lib" path="lib/hk2-locator-2.4.0-b25.jar"/>
+	<classpathentry kind="lib" path="lib/hk2-utils-2.4.0-b25.jar"/>
+	<classpathentry kind="lib" path="lib/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="lib/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/javax.inject-2.4.0-b25.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-api-2.2.7.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-client.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-common.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-container-servlet-core.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-container-servlet.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-guava-2.19.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-media-jaxb.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-server.jar"/>
+	<classpathentry kind="lib" path="lib/org.osgi.core-4.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/persistence-api-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/new.jar"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+</classpath>

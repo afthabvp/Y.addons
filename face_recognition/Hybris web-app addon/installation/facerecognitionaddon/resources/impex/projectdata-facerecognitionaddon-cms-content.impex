@@ -1,0 +1,23 @@
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$contentCatalogName=Electronics Content Catalog
+$page=page(uid, $contentCV)                        ;
+$contentPage=contentPage(uid, $contentCV)          ;
+
+
+########### Component #############
+INSERT_UPDATE FaceRecognitionComponent;catalogVersion(catalog(id),version)[unique=true,allownull=true];name;onlyOneRestrictionMustApply[allownull=true];uid[unique=true,allownull=true];visible[allownull=true]
+;electronicsContentCatalog:Staged;FaceRecognitionComponent;true;FaceRecognitionComponent;true
+
+
+######facerecognition component display on Order Confirmation Page#######
+#for desktop
+# Order Confirmation Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='AccountPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;TopContent;;FaceRecognitionComponent;wide
+
+insert_update ContentSlot;active[allownull=true];catalogVersion(catalog(id),version)[unique=true,allownull=true];name;uid[unique=true,allownull=true];cmsComponents(uid[unique=true,allownull=true],$contentCV)
+;true;electronicsContentCatalog:Staged;FaceRecognitionSlots;FaceRecognitionSlots;FaceRecognitionComponent
+
+insert_update ContentSlotForPage;catalogVersion(catalog(id),version)[unique=true,allownull=true];contentSlot(catalogVersion(catalog(id),version),uid)[allownull=true];page(catalogVersion(catalog(id),version),uid)[allownull=true];position[allownull=true];uid[unique=true,allownull=true]
+;electronicsContentCatalog:Staged;electronicsContentCatalog:Staged:FaceRecognitionSlots;electronicsContentCatalog:Staged:profile;TopContent;FaceRecognitionCFP
