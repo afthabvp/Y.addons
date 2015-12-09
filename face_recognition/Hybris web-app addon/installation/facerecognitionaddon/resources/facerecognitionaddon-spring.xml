@@ -231,4 +231,33 @@
           <property name="typeService" ref="typeService" />
           <property name="uiExperienceService" ref="defaultUiExperienceService" />
 	</bean>
+	
+	<bean id="mDIYTokenBasedCustomerFacade" class="com.acc.facade.impl.MDIYTokenBasedCustomerFacadeImpl">
+		<property name="mDIYTokenBasedCustomerService" ref="mDIYTokenBasedCustomerService"/>
+		<property name="csrCustomerDetailsConverter" ref="csrCustomerDetailsConverter"/>
+	</bean>
+	<bean id="mDIYTokenBasedCustomerService" class="com.acc.service.impl.MDIYTokenBasedCustomerServiceImpl">
+		<property name="mDIYTokenBasedCustomerDao" ref="mDIYTokenBasedCustomerDao"/>
+	
+	</bean>
+		<bean id="mDIYTokenBasedCustomerDao" class="com.acc.dao.impl.MDIYTokenBasedCustomerDaoImpl">
+				<property name="flexibleSearchService" ref="flexibleSearchService"/>
+				<property name="modelService" ref="modelService"/>
+	</bean>
+	
+	<bean id="faceRecogPromotionsFacade" class="com.acc.facade.impl.FaceRecogPromotionsFacadeImpl">
+		<property name="faceRecogPromotionsService" ref="faceRecogPromotionsService"/>
+<!-- 		<property name="csrCustomerDetailsConverter" ref="csrCustomerDetailsConverter"/>
+ -->	</bean>
+	<bean id="faceRecogPromotionsService" class="com.acc.service.impl.FaceRecogPromotionsServiceImpl">
+		<property name="faceRecogPromotionsDao" ref="faceRecogPromotionsDao"/>
+<!-- 		<property name="promotionsConverter" ref="promotionsConverter"/>
+ -->		<property name="userService" ref="userService"/>
+	
+	</bean>
+		<bean id="faceRecogPromotionsDao" class="com.acc.dao.impl.FaceRecogPromotionsDaoImpl">
+	       <property name="flexibleSearchService" ref="flexibleSearchService"/>
+				<property name="modelService" ref="modelService"/>
+	</bean>
+	
 </beans>

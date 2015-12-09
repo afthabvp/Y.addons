@@ -3,12 +3,21 @@
  */
 package com.acc.facade.csrCustomerDetails.populator;
 
+import de.hybris.platform.commercefacades.product.data.PromotionData;
 import de.hybris.platform.converters.Populator;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
+import de.hybris.platform.promotions.model.AbstractPromotionModel;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
+import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.servicelayer.user.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,13 +28,31 @@ import com.acc.model.CSRCustomerDetailsModel;
 
 /**
  * @author swapnil.a.pandey
- *
+ * 
  */
 public class CSRCustomerDetailsPopulator implements Populator<CSRCustomerDetailsModel, CSRCustomerDetailsData>
 {
-
+	@Resource(name = "promotionsConverter")
+	private Converter<AbstractPromotionModel, PromotionData> promotionsConverter;
 	@Autowired
 	private UserService userService;
+
+	/**
+	 * @return the promotionsConverter
+	 */
+	public Converter<AbstractPromotionModel, PromotionData> getPromotionsConverter()
+	{
+		return promotionsConverter;
+	}
+
+	/**
+	 * @param promotionsConverter
+	 *           the promotionsConverter to set
+	 */
+	public void setPromotionsConverter(final Converter<AbstractPromotionModel, PromotionData> promotionsConverter)
+	{
+		this.promotionsConverter = promotionsConverter;
+	}
 
 	/**
 	 * @return the userService
@@ -73,8 +100,20 @@ public class CSRCustomerDetailsPopulator implements Populator<CSRCustomerDetails
 			target.setAge(source.getAge());
 			target.setComplexion(source.getComplexion().toString());
 			target.setGender(source.getGender());
-
+			target.setDevicetoken(source.getDevicetoken());
+			target.setCameraid(source.getCameraid());
+			final List<PromotionData> promotionsDatas = new ArrayList<PromotionData>();
+			if (CollectionUtils.isNotEmpty(source.getPromotions()))
+			{
+				for (final AbstractPromotionModel model : source.getPromotions())
+				{
+					promotionsDatas.add(promotionsConverter.convert(model));
+				}
+				target.setPromotions(promotionsDatas);
+			}
 		}
 
+
 	}
+
 }

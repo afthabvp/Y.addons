@@ -5,6 +5,7 @@ package com.acc.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Collections;
 
 import javapns.communication.ConnectionToAppleServer;
 import javapns.devices.Device;
@@ -21,14 +22,23 @@ import javapns.notification.PushNotificationPayload;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.acc.data.CameraPromotionData;
+import com.acc.facade.FaceRecogPromotionsFacade;
+import com.acc.facade.MDIYTokenBasedCustomerFacade;
+import com.acc.facades.CSRCustomerDetails.data.CSRCustomerDetailsData;
+import com.frs.bean.MDIRequestResponseBean;
+import com.frs.bean.MDIUser;
 
 
 //import javapns.back.SSLConnectionHelper;
@@ -52,9 +62,16 @@ public class MDIYPushNotificationController
 	private static final int PORT = 2195;
 	private static final int BADGE = 1;
 
-	private static String certificate = "C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12";
+	private static String certificate = "C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12/Sandbox_Certificates.p12";
 	private static String passwd = "hybris";
 	Payload aPayload;
+	String status = null;
+	@Autowired
+	MDIYTokenBasedCustomerFacade mDIYTokenBasedCustomerFacade;
+	@Autowired
+	FaceRecogPromotionsFacade facerecogPromotionsfacade;
+
+	String message = null;
 
 	//Object keystore;
 
@@ -63,9 +80,9 @@ public class MDIYPushNotificationController
 	//	.withCert("C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12", "hybris").withSandboxDestination().build();
 
 	@SuppressWarnings("deprecation")
-	@RequestMapping(value = "/push", method = RequestMethod.GET)
+	@RequestMapping(value = "/push", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public Payload pushNotification(final HttpServletRequest request) throws DuplicateDeviceException, NullIdException,
+	public String pushNotification(final HttpServletRequest request) throws DuplicateDeviceException, NullIdException,
 			NullDeviceTokenException, Exception
 	{
 
@@ -81,62 +98,112 @@ public class MDIYPushNotificationController
 
 		}
 
-		final PushNotificationPayload complexPayload = PushNotificationPayload.complex();
-		complexPayload.addAlert("my alert message");
-		complexPayload.addBadge(BADGE);
-		complexPayload.addSound("default");
 
-		//final PayloadBuilder aPayload = APNS.newPayload();
-		//aPayload.badge(BADGE);
-		System.out.println("Payload setup successfull.");
 
-		System.out.println(aPayload);
+
 
 		// Get !PushNotification Instance
 		final PushNotificationManager pushManager = new PushNotificationManager();
-
-		// Get iPhone client
-		final Device dev = pushManager.getDevice(deviceToken);
-		LOG.info("device+++++++++++++++" + dev);
-		if (dev == null)
+		if (StringUtils.isNotEmpty(deviceToken) || null != deviceToken)
 		{
-			pushManager.addDevice(deviceToken, deviceToken);
+			final CSRCustomerDetailsData csrCustomer = mDIYTokenBasedCustomerFacade.getTokenBasedOnCustomer(deviceToken);
+			System.out.println("csrcustomer+++++++++" + csrCustomer);
 
-			System.out.println("iPhone UDID taken.");
+			System.out.println("csrcustomer+++++++++" + csrCustomer.getCustomerName());
+			final MDIRequestResponseBean bean = new MDIRequestResponseBean();
+			final MDIUser mdiUser = new MDIUser();
+			mdiUser.setUserName(csrCustomer.getCustomerName());
 
-			System.out.println("Token: " + pushManager.getDevice("iPhone").getToken());
+			bean.setUser(mdiUser);
+			//			CSRCustomerDetailsModel model = modelService.create(CSRCustomerDetailsModel.class);
+			System.out.println("bean +++++++++++++++" + bean);
 
+			final String cameraId = bean.getUser().getCameraId();
+			System.out.println("complexion++++++++++" + bean.getUser().getComplexion());
 
+			System.out.println("cameraId++++++++++" + cameraId);
+			if (StringUtils.isNotEmpty(cameraId) || StringUtils.isNotBlank(cameraId))
+			{
 
-			System.out.println("Client setup successfull.");
-			final AppleNotificationServer customServer = new AppleNotificationServerBasicImpl(certificate, passwd,
-					ConnectionToAppleServer.KEYSTORE_TYPE_PKCS12, HOST, PORT);
-
-			// Initialize connection
-			//pushManager.initializeConnection(HOST, PORT, certificate, passwd, ConnectionToAppleServer.KEYSTORE_TYPE_PKCS12);
-
-			pushManager.initializeConnection(customServer);
-			System.out.println("Connection initialized...");
-
-			// Send message
-			pushManager.sendNotification(dev, complexPayload);
-			pushManager.removeDevice(deviceToken);
-
-
-			System.out.println("Message sent!");
-
-			System.out.println("# of attempts: " + pushManager.getRetryAttempts());
-			pushManager.stopConnection();
-
-			System.out.println("done");
-
-			LOG.info("at the end of pushNotification webservice" + complexPayload);
+				final CSRCustomerDetailsData camera = facerecogPromotionsfacade.getPromotionsBasedOnCamera(cameraId);
+				System.out.println("CameraPromotionData++++++++++" + camera.getPromotions());
 
 
-			//notify("Notify my iPhone");
+				final CameraPromotionData cameraPromotionsData = new CameraPromotionData();
+				//	cameraPromotionsData.setWelcomeMessage(camera.getWelcomeMessage());
+				cameraPromotionsData.setPromotions(CollectionUtils.isNotEmpty(camera.getPromotions()) ? camera.getPromotions()
+						: Collections.EMPTY_LIST);
+				message = cameraPromotionsData.getPromotions().toString();
+			}
+			else
+			{
+				message = "get 20% to 30% discount on all our products available in store";
+			}
+
+			final PushNotificationPayload complexPayload = PushNotificationPayload.complex();
+			complexPayload.addAlert(message);
+			complexPayload.addBadge(BADGE);
+			complexPayload.addSound("default");
+			//final PayloadBuilder aPayload = APNS.newPayload();
+			//aPayload.badge(BADGE);
+			System.out.println("Payload setup successfull.");
+			System.out.println(complexPayload);
+			System.out.println(complexPayload.getPayloadSize());
+
+
+			pushManager.addDevice("iPhone", deviceToken);
+			status = "success";
+			// Get iPhone client
+			final Device dev = pushManager.getDevice("iPhone");
+			LOG.info("device+++++++++++++++" + dev);
+			if (dev != null)
+			{
+				System.out.println("iPhone UDID taken.");
+
+
+				System.out.println("Token: " + pushManager.getDevice("iPhone").getToken());
+
+
+
+				System.out.println("Client setup successfull.");
+				final AppleNotificationServer customServer = new AppleNotificationServerBasicImpl(certificate, passwd,
+						ConnectionToAppleServer.KEYSTORE_TYPE_PKCS12, HOST, PORT);
+
+				// Initialize connection
+				//pushManager.initializeConnection(HOST, PORT, certificate, passwd, ConnectionToAppleServer.KEYSTORE_TYPE_PKCS12);
+
+				pushManager.initializeConnection(customServer);
+				System.out.println("Connection initialized...");
+
+				// Send message
+				pushManager.sendNotification(dev, complexPayload);
+				pushManager.removeDevice(deviceToken);
+
+
+				System.out.println("Message sent!");
+
+				System.out.println("# of attempts: " + pushManager.getRetryAttempts());
+				pushManager.stopConnection();
+
+				System.out.println("done");
+
+				LOG.info("at the end of pushNotification webservice" + complexPayload);
+
+
+				//notify("Notify my iPhone");
+			}
 		}
 
-		return complexPayload;
+
+
+		else
+		{
+
+			status = "failed";
+			System.out.println("device token is empty");
+		}
+
+		return status;
 
 
 	}

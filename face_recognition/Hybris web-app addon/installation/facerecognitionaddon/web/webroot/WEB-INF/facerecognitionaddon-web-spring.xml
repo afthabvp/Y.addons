@@ -66,6 +66,10 @@
       <!-- <property name="secureMediaToken" value="securemedias"/>  securemedias is default but you may overwrite it -->
        <aop:scoped-proxy/>
      </bean>	
+     <bean class="de.hybris.platform.commercefacades.xstream.alias.TypeAliasMapping">
+		<property name="alias" value="pushNotifications"/>
+		<property name="aliasedClass" value="com.acc.data.CameraPromotionData"/>
+	</bean>
 
 	<!-- 
 	 WARNING: 

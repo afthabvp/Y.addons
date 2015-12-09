@@ -50,4 +50,8 @@
 		<property name="complexion" type="String"/>
 		<property name="age" type="String"/>
 	</bean>
+	
+	<bean class="com.acc.data.CameraPromotionData" extends="com.acc.product.data.PromotionDataList">
+		<property name="welcomeMessage" type="String"/>
+	</bean>	
 </beans>

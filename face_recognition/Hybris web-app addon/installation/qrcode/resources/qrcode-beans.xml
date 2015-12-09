@@ -37,7 +37,12 @@
 		<property name="profilePictureURL" type="String"/>
 		<property name="gender" type="String"/>
 		<property name="complexion" type="String"/>
-		<property name="age" type="String"/>	
+		<property name="age" type="String"/>
+		<property name="devicetoken" type="String"/>
+		<property name="promotions" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.PromotionData>" />
+		
+		<property name="cameraid" type="String"/>	
+			
 	</bean> 
 
 	<bean class="com.acc.facades.wishlist.data.WishlistData">

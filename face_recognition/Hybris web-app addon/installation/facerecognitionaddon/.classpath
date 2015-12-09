@@ -42,5 +42,8 @@
 	<classpathentry kind="lib" path="lib/persistence-api-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/validation-api-1.1.0.Final.jar"/>
 	<classpathentry kind="lib" path="lib/new.jar"/>
+	<classpathentry kind="lib" path="C:/hybris5.1.0.4/hybris/bin/custom/facerecognitionaddon/lib/apns-0.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/hybris5.1.0.4/hybris/bin/custom/facerecognitionaddon/lib/JavaPNS_2.2.jar"/>
+	<classpathentry kind="lib" path="C:/hybris5.1.0.4/hybris/bin/custom/facerecognitionaddon/lib/new.jar"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>
