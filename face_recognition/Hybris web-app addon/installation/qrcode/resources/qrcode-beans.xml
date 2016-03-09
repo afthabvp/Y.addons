@@ -39,6 +39,7 @@
 		<property name="complexion" type="String"/>
 		<property name="age" type="String"/>
 		<property name="devicetoken" type="String"/>
+		<property name="mobiletype" type="String"/>
 		<property name="promotions" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.PromotionData>" />
 		
 		<property name="cameraid" type="String"/>	

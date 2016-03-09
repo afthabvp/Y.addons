@@ -5,6 +5,9 @@ package com.acc.facade.impl;
 
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import com.acc.facade.MDIYTokenBasedCustomerFacade;
@@ -72,5 +75,28 @@ public class MDIYTokenBasedCustomerFacadeImpl implements MDIYTokenBasedCustomerF
 
 		return csrCustomerDetailsConverter.convert(model);
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.acc.facade.MDIYTokenBasedCustomerFacade#getTokenCustomer()
+	 */
+	@Override
+	public List<CSRCustomerDetailsData> getTokenCustomer()
+	{
+		final List<CSRCustomerDetailsModel> model = mDIYTokenBasedCustomerService.getTokenCustomer();
+
+		//final List<CSRCustomerDetailsModel> csrModel = new ArrayList<CSRCustomerDetailsModel>();
+		CSRCustomerDetailsData data = new CSRCustomerDetailsData();
+
+		final List<CSRCustomerDetailsData> csrDataList = new ArrayList<CSRCustomerDetailsData>();
+
+		for (final CSRCustomerDetailsModel csrModel : model)
+		{
+			data = csrCustomerDetailsConverter.convert(csrModel);
+			csrDataList.add(data);
+		}
+		return csrDataList;
 	}
 }

@@ -3,6 +3,8 @@
  */
 package com.acc.facade;
 
+import java.util.List;
+
 import com.acc.facades.CSRCustomerDetails.data.CSRCustomerDetailsData;
 
 
@@ -13,4 +15,6 @@ import com.acc.facades.CSRCustomerDetails.data.CSRCustomerDetailsData;
 public interface MDIYTokenBasedCustomerFacade
 {
 	public CSRCustomerDetailsData getTokenBasedOnCustomer(String devicetoken);
+
+	public List<CSRCustomerDetailsData> getTokenCustomer();
 }

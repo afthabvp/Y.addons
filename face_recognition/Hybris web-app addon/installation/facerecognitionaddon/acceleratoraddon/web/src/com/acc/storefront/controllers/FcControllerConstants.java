@@ -21,6 +21,8 @@ public interface FcControllerConstants
 			interface Account
 			{
 				String FaceRecognitionPage = "pages/addon:/facerecognitionaddon/pages/account/faceRecognitionPage";
+				String PushNotificationPage = "pages/addon:/facerecognitionaddon/pages/account/pushNotificationPage";
+
 			}
 
 		}
@@ -30,6 +32,8 @@ public interface FcControllerConstants
 			interface Facerecog
 			{
 				String ajaxuploadImage = "pages/addon:/facerecognitionaddon/fragments/facerecog/ajaxuploadImage";
+				
+
 			}
 		}
 	}

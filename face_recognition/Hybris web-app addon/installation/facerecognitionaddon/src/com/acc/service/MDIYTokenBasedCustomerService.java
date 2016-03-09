@@ -3,6 +3,8 @@
  */
 package com.acc.service;
 
+import java.util.List;
+
 import com.acc.model.CSRCustomerDetailsModel;
 
 
@@ -13,5 +15,7 @@ import com.acc.model.CSRCustomerDetailsModel;
 public interface MDIYTokenBasedCustomerService
 {
 	public CSRCustomerDetailsModel getTokenBasedOnCustomer(String devicetoken);
+
+	public List<CSRCustomerDetailsModel> getTokenCustomer();
 
 }

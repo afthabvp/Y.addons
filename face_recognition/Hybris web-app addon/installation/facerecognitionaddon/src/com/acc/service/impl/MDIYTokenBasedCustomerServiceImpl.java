@@ -48,4 +48,16 @@ public class MDIYTokenBasedCustomerServiceImpl implements MDIYTokenBasedCustomer
 		return mDIYTokenBasedCustomerDao.getTokenBasedOnCustomer(devicetoken);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.acc.service.MDIYTokenBasedCustomerService#getTokenCustomer()
+	 */
+	@Override
+	public List<CSRCustomerDetailsModel> getTokenCustomer()
+	{
+		// YTODO Auto-generated method stub
+		return mDIYTokenBasedCustomerDao.getTokenCustomer();
+	}
+
 }
