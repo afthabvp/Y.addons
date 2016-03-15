@@ -102,6 +102,7 @@ public class CSRCustomerDetailsPopulator implements Populator<CSRCustomerDetails
 			target.setGender(source.getGender());
 			target.setDevicetoken(source.getDevicetoken());
 			target.setCameraid(source.getCameraid());
+			target.setMobiletype(source.getMobiletype());
 			final List<PromotionData> promotionsDatas = new ArrayList<PromotionData>();
 			if (CollectionUtils.isNotEmpty(source.getPromotions()))
 			{
