@@ -1,0 +1,3 @@
+INSERT_UPDATE CSRCustomerDetails ; UUID[unique=true];customerId[unique=true];customerName;age;cameraid;devicetoken;gender;mobiletype
+;12321;kishor.chockalingam@accenture.com;kishor.chockalingam@accenture.com;32;2123343;fca44fd8f1538823c40eb6a006121b8774377f9dc0c567d34bd0bfbd0dd2f77a;male;iPhone
+;12221;swapnil.a.pandey@accenture.com;swapnil.a.pandey@accenture.com;26;2123343;5fef00f9222e1ff2210d3cfee47fc95521d3d5bd251b4b0400d9f52063621821;female;iPhone
