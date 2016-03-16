@@ -25,6 +25,22 @@
     welcome.beacon.minor.id=23023
 
         face.recognition.image.threshold=30
+
+#####User Defined Properties#####
+#Rain
+min.precipitation.light=0.1
+max.precipitation.light=2.5
+min.precipitation.moderate=2.6
+max.precipitation.moderate=7.6
+
+#temperature
+max.required.temperature.for.snowfall=0
+
+#Cloudy #cloud cover
+min.cloud.cover.partly.cloudy=40
+max.cloud.cover.partly.cloudy=60
+min.cloud.cover.mostly.cloudy=60
+max.cloud.cover.mostly.cloudy=100
     
     Modify the values as per requirement
     
