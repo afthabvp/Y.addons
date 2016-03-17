@@ -39,6 +39,8 @@
 
 		</itemtype>
 		<itemtype code="Config" autocreate="true" generate="true">
+				        <deployment table="Config" typecode="11032" />
+
 			<attributes>
 				<attribute type="java.lang.Integer" qualifier="ValueHolder"
 					generate="true">
